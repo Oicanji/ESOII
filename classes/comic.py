@@ -1,4 +1,3 @@
-import re
 from xmlrpc.client import DateTime
 from user import User
 from page import Page
@@ -52,4 +51,8 @@ class Comic:
         self.__visible = False
     def isVisible(self):
         return self.__visible
-    
+    def create(self, ):
+        self.likeEnable()
+        self.commentEnable()
+        self.setVisible()
+        self.setPublished()

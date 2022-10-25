@@ -16,8 +16,32 @@ class Form:
     def addPoint(self, x, y):
         self.__x.append(x)
         self.__y.append(y)
-        
     def isForm(self):
         if(len(self.__x) > 2 and len(self.__y) > 2):
             return True
         return False
+    def create(self, images):
+        while True:
+            print("\n\n\n0. Back")
+            print("1. Add Point")
+            print("2. Add Image")
+            print("3. Set Border")
+            choice = input("Enter your choice: ")
+            if choice == '0':
+                break
+            elif choice == '1':
+                x = input("\nEnter x: ")
+                y = input("Enter y: ")
+                self.addPoint(x, y)
+            elif choice == '2':
+                choice_image = input("\nEnter image id: ")
+                for i in images:
+                    if i.getId() == choice_image:
+                        self.setImage(i)
+                        break
+            elif choice == '3':
+                width = input("\nEnter border width: ")
+                style = input("Enter border style: ")
+                color = input("Enter border color: ")
+                self.setBorder(width, style, color)
+    
