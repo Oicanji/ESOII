@@ -3,6 +3,8 @@ class Form:
         self.__border_width = 1
         self.__border_style = 'solid'
         self.__border_color = 'black'
+        self.__x = []
+        self.__y = []
     def setBorder(self, width, style, color):
         self.__border_width = width
         self.__border_style = style

@@ -1,9 +1,11 @@
-from hashlib import scrypt
+from hashlib import sha256
 from guest import Guest
 class User:
     def __init__(self, session):
         self.session = session
         self.__isAdm = False
+        self.__name = ''
+        self.__hash = ''
     #getandset methods from name, hash and session
     def getName(self):
         return self.__name
@@ -12,20 +14,14 @@ class User:
     def getHash(self):
         return self.__hash
     def getSession(self):
-        return self.__session
+        return self.session
     def setSession(self, session):
-        self.__session = session
+        self.session = session
     def saltPassword(self, password):
-        #use pycryptodome to salt 'cavalodefogo' in password
-        salt = b'$2b$12$' + b'cavalodefogo'
-        #use pycryptodome to hash the salted password
-        hash = scrypt.hash(password, salt, N=2**14, r=8, p=1, buflen=32)
-        self.__hash = hash
+        #encrypting password with sha256
+        self.__hash = sha256(password.encode('utf-8')).hexdigest()
     def auth(self, password):
-        #use pycryptodome to salt 'cavalodefogo' in password
-        salt = b'$2b$12$' + b'cavalodefogo'
-        #use pycryptodome to hash the salted password
-        hash = scrypt.hash(password, salt, N=2**14, r=8, p=1, buflen=32)
+        hash = sha256(password.encode('utf-8')).hexdigest()
         if hash == self.__hash:
             return True
         else:
