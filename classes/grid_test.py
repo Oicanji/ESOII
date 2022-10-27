@@ -16,17 +16,5 @@ def test_add_form_to_grid():
     form.addPoint(20, 20)
     form.addPoint(20, 10)
     form.setImage(Image('src/img/1.png'))
-    grid.addForm(form)
-    assert grid.getForms() == [form]
-
-def test_add_form_to_grid_with_border():
-    grid = Grid()
-    form = Form()
-    form.addPoint(10, 10)
-    form.addPoint(10, 20)
-    form.addPoint(20, 20)
-    form.addPoint(20, 10)
-    form.setImage(Image('src/img/1.png'))
-    form.setBorder(1, 'solid', 'black')
-    grid.addForm(form)
-    assert grid.getForms() == [form]
+    grid.addForm(1, 2, form)
+    assert grid.getForms() == [{'x': 1, 'y': 2, 'form': form}]

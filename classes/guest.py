@@ -2,16 +2,12 @@ import random
 import string
 class Guest:
     def __init__(self):
-        self.__session = self.createToken()
+        self.__session = ''
+        self.createToken()
     def getSession(self):
-        return self.__session
+        return str(self.__session)
     def createToken(self):
-        #generate a random token with numbers ans letters with 32 characters
-        token = ''
-        for i in range(32):
-            token += random.choice(string.ascii_letters + string.digits)
-        self.__session['token'] = token
-        return token
+        self.__session = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(32))
     def login(self, login):
         name = input("Enter your name: ")
         password = input("Enter your password: ")
